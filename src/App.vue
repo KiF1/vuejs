@@ -1,36 +1,12 @@
-<!-- V-show é para quando queremos apenas que o componente apareça e suma, mas ele fica apenas com display none, o v-if é quando mesmo que o componente apareça ou não, ele não aparecerá no inspecionar -->
-
 <template>
-  <TheHeader v-if="showHeader" variant="Sucess" @close="onClose" />
-  <div>Nome: {{ name }}</div>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <div v-if="accessLevel === 'Admin'">Admin</div>
-  <div v-else-if="accessLevel === 'Marketing'">Marketing</div>
-  <div v-else>Suport</div>
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link> |
+    <router-link to="/services">Services</router-link> |
+    <router-link to="/user/10">Usuário</router-link>
+  </nav>
+  <router-view/>
 </template>
-
-<script>
-import TheHeader from  './components/TheHeader.vue'
-
-export default {
-  name: 'App',
-  components: {
-    TheHeader
-  },
-  data(){
-    return {
-      showHeader: true,
-      name: 'Vue.js',
-      accessLevel: 'Marketing'
-    }
-  },
-  methods: {
-    onClose() {
-      this.showHeader = false;
-    } 
-  },
-}
-</script>
 
 <style>
 #app {
@@ -39,5 +15,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
