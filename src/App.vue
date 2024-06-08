@@ -1,7 +1,7 @@
 <!-- V-show é para quando queremos apenas que o componente apareça e suma, mas ele fica apenas com display none, o v-if é quando mesmo que o componente apareça ou não, ele não aparecerá no inspecionar -->
 
 <template>
-  <TheHeader v-show="showHeader" />
+  <TheHeader v-if="showHeader" variant="Sucess" @close="onClose" />
   <div>Nome: {{ name }}</div>
   <img alt="Vue logo" src="./assets/logo.png">
   <div v-if="accessLevel === 'Admin'">Admin</div>
@@ -19,11 +19,16 @@ export default {
   },
   data(){
     return {
-      showHeader: false,
+      showHeader: true,
       name: 'Vue.js',
       accessLevel: 'Marketing'
     }
-  }
+  },
+  methods: {
+    onClose() {
+      this.showHeader = false;
+    } 
+  },
 }
 </script>
 
